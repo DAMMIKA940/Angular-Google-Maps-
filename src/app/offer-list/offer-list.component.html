@@ -1,0 +1,80 @@
+
+<div class="row">
+    <div class="col-3">
+      <app-dashboard></app-dashboard>
+    </div>
+    <div class="col-9">
+<div class = "card" *ngIf="!editMode">
+   
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Category</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Location</th>
+      <th scope="col">Image</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let offer of offers">
+      <td>{{offer.category}}</td>
+      <td>{{offer.name}}</td>
+      <td>{{offer.description}}</td>
+      <td>{{offer.location}}</td>
+      <td><img src="{{offer.link}}" alt="offer image" width="50" height="50"></td>
+        <td><button type="button" class="btn btn-danger" (click)="deleteOffer()">Delete</button>  &nbsp;&nbsp;
+        <button type="button" class="btn btn-primary" *ngIf="!editMode" (click)="editOffer(offer)">Edit</button></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="card" *ngIf="editMode"> 
+    <div class="card-header">
+        <h3 style="text-align: center;">Edit Offer</h3>
+    </div>
+    <div class="card-body">
+        <form>
+            <div class="form-group">
+                <label for="category"><b>Category</b></label>
+                <br>
+                <select style="width: 150px;" class="form-control" formControlName="category" id="category" name="category" >
+                  <option value="All">FOOD</option>
+                  <option value="All">HOTEL</option>
+                  <option value="All">ELELECRONIC</option>
+                </select> 
+          </div>
+
+        
+            <div class="form-group">
+                <label for="category"><b>Offer Title</b></label>
+                <br>
+                <input style="width: 500px;" class="form-control" formControlName="name" id="title" name="title" type="text">
+                </div>
+            
+            
+              <div class="form-group">
+                <label for="category"><b>Offer Description</b></label>
+                <br>
+                <textarea style="width: 500px;" class="form-control" id="description" formControlName="description" name="description" rows="3"></textarea>
+            
+              </div>
+              <div class="form-group">
+                <label for="category"><b>Offer Image</b></label>
+                <br>
+                <input style="width: 500px;" class="form-control" id="image" (change)="uploadImage($event)" name="image" type="file">
+                </div>
+                <br>
+              <div class="form-group">
+                <button type="submit" (click)="onSubmit()" class="btn btn-primary">Submit</button>
+              </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+

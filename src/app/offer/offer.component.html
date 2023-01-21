@@ -1,0 +1,25 @@
+
+
+
+<div class="row">
+    <div class="col-3">
+      <app-dashboard></app-dashboard>
+    </div>
+    <div class="col-9">
+<div class="card">
+
+<!--select category-->
+<div class="form-group">
+<label for="category"><b> Select Category</b></label>
+<br>
+
+<select style="width: 150px;" class="form-control" id="category" name="category" [(ngModel)]="category" (change)="getOffers()">
+
+<option value="All">All</option>
+<option *ngFor="let category of offers" [value]="category.category">{{category.category}}</option>
+</select>
+</div>
+
+
+<div class="cardMap" style="height: 500px;"  id="map"></div>
+</div>
